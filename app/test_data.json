@@ -1,0 +1,34 @@
+{
+    "tickets": [
+        {
+            "requester_id": 1,
+            "assignee_id": 1,
+            "subject": "a"
+        },
+        {
+            "requester_id": 2,
+            "assignee_id": 1,
+            "subject": "b"
+        },
+        {
+            "requester_id": 3,
+            "assignee_id": 1,
+            "subject": "c"
+        },
+        {
+            "requester_id": 4,
+            "assignee_id": 2,
+            "subject": "d"
+        },
+        {
+            "requester_id": 5,
+            "assignee_id": 2,
+            "subject": "e"
+        },
+        {
+            "requester_id": 6,
+            "assignee_id": 2,
+            "subject": "f"
+        }
+    ]
+}
