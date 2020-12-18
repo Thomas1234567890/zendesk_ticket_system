@@ -26,11 +26,10 @@ const get_a_subject_by_id = (id : number) =>
   return false;
 }
 
-/// When a user selects a group id (assignee_id: 5), return all subjects with the assigned group id
+/// When a user selects a group id (assignee_id: 5), return all objects with the assigned group id
 let get_all_objects_by_assignee_id = (id : number) =>
 {
   let result = data.filter( (ele) => ele.assignee_id === id );
-  console.log(result)
   return result;
 }
 
@@ -65,9 +64,10 @@ let test_get_a_subject_by_id = (id : number, expected_result: string) =>
   return result === expected_result ? true : false;
 }
 
-let test_get_all_objects_by_assignee_id = (id :number, expected_result: string) => 
+let test_get_all_objects_by_assignee_id = (id :number, expected_result :string) => 
 {
-  const result = get_all_objects_by_assignee_id(id).join('');
+
+  let result = JSON.stringify(get_all_objects_by_assignee_id(id));
   return result === expected_result ? true : false;
 }
 
@@ -76,7 +76,9 @@ let testcase = () => {
   //// check if test_data.json is connected
   // console.log(test_json_connection("abcdef"));
   // console.log(test_get_a_subject_by_id(1, 'a'));
-  console.log(test_get_all_objects_by_assignee_id(1,'abc',))
+  
+  const test_string = '[{"requester_id":1,"assignee_id":1,"subject":"a"},{"requester_id":2,"assignee_id":1,"subject":"b"},{"requester_id":3,"assignee_id":1,"subject":"c"}]';
+  // console.log(test_get_all_objects_by_assignee_id(1,test_string));
 };
 
 testcase();
