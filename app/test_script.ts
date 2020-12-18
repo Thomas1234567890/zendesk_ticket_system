@@ -16,6 +16,7 @@ let data = json_test_data.tickets;
 // 	Page through tickets when more than 25 are returned / pagnation
 
 //// production
+
 const get_a_subject_by_id = (id : number) => 
 {
   for (let i = 0; i < data.length; i++) {
@@ -26,28 +27,53 @@ const get_a_subject_by_id = (id : number) =>
   return false;
 }
 
+const get_all_requester_ids = () =>
+{
+  let result = [];
+  for( let i = 0; i < data.length; i++)
+  { 
+    result.push(data[i].requester_id);
+  }
+  return result;
+}
+
 /// When a user selects a group id (assignee_id: 5), return all objects with the assigned group id
-let get_all_objects_by_assignee_id = (id : number) =>
+const get_all_objects_by_assignee_id = (id : number) =>
 {
   let result = data.filter( (ele) => ele.assignee_id === id );
   return result;
 }
 
-/*
 
-let get_a_subject_by_group_id = (id, json_arr) => {
-  for (i = 0; i < json_arr.tickets.length; i++) {
-    if (json_arr.tickets[i].assignee_id == id) {
-      return json_arr.tickets[i].subject;
-    }
-  }
-  return false;
-};
-
-
- */
 
 //// solution
+
+///bind requester_id 's to dropdown
+const bind_requester_id_to_dropdown = () => 
+{
+  const requester_ids = get_all_requester_ids();
+  requester_ids.forEach(element => option_scaffold(element) );
+}
+const option_scaffold = (element) =>
+{
+  let html_select = document.getElementById('requester_id_dropdown');
+  let option = document.createElement('option');
+  option.id = element;
+  option.text = element;
+  html_select.append(option);
+};
+//// when the user selects a requester id display the subject 
+const show_requester_ids_dropdown_subject = () =>
+{
+    let selected_id = document.getElementById('requester_id_dropdown').id;
+    let subject = get_a_subject_by_id(parseInt(selected_id));
+}
+
+function scaffold_html()
+{
+bind_requester_id_to_dropdown();
+}
+// scaffold_html();
 
 //// test
 
@@ -56,6 +82,13 @@ let get_a_subject_by_group_id = (id, json_arr) => {
 let test_json_connection = (expected_result) => {
   const result = data.map(x => x.subject).join("");
   return result === expected_result ? true : false;
+}
+
+const test_get_all_requester_ids = (expected_result : Array<number>) =>
+{
+  let arr = get_all_requester_ids();
+  let result = arr.join('');
+  return result === expected_result.join('') ? true : false;
 }
  
 let test_get_a_subject_by_id = (id : number, expected_result: string) => 
@@ -66,10 +99,9 @@ let test_get_a_subject_by_id = (id : number, expected_result: string) =>
 
 let test_get_all_objects_by_assignee_id = (id :number, expected_result :string) => 
 {
-
   let result = JSON.stringify(get_all_objects_by_assignee_id(id));
   return result === expected_result ? true : false;
-}
+} 
 
 
 let testcase = () => {
@@ -77,8 +109,9 @@ let testcase = () => {
   // console.log(test_json_connection("abcdef"));
   // console.log(test_get_a_subject_by_id(1, 'a'));
   
-  const test_string = '[{"requester_id":1,"assignee_id":1,"subject":"a"},{"requester_id":2,"assignee_id":1,"subject":"b"},{"requester_id":3,"assignee_id":1,"subject":"c"}]';
+  // const test_string = '[{"requester_id":1,"assignee_id":1,"subject":"a"},{"requester_id":2,"assignee_id":1,"subject":"b"},{"requester_id":3,"assignee_id":1,"subject":"c"}]';
   // console.log(test_get_all_objects_by_assignee_id(1,test_string));
+  // console.log(test_get_all_requester_ids([1,2,3,4,5,6]));
 };
 
 testcase();
