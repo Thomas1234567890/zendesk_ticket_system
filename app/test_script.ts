@@ -1,7 +1,7 @@
 //// when working with local json files we can just import them
 //// for this test build I'll be using a minified array
-import json_test_data from "./test_data.json";
-// import json_test_data from "./data.json";
+// import json_test_data from "./test_data.json";
+import json_test_data from "./data.json";
 let data = json_test_data.tickets;
 
 // json_test_data.tickets.forEach(ele => console.log(ele.subject));
@@ -40,7 +40,7 @@ const get_all_assignee_ids = () => {
     arr_of_ids.push(data[i].assignee_id);
   }
   let unique_ids = [...new Set(arr_of_ids)]; //// ignore this stackblitz error / issue / shite
-  return unique_ids;
+  return unique_ids.sort();
 };
 
 /// When a user selects a group id (assignee_id: 5), return all objects with the assigned group id
@@ -49,13 +49,13 @@ const get_all_objects_by_assignee_id = (id: number) => {
   return result;
 };
 
+
 const get_all_subjects_by_assignee_id = (id:number) => {
   const result = data.filter(ele => ele.assignee_id === id);
   const array_of_subjects = result.map(x => x.subject);
-  console.log(array_of_subjects)
+  // console.log(array_of_subjects)
   return array_of_subjects;
 };
-
 //// solution
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -99,11 +99,9 @@ const add_change_event_to_assignee_dropdown = (select_id, select_target) =>
 document
     .getElementById(select_id)
     .addEventListener("change", function() {
-      // console.log('You selected: ', this.value);
       let id = this.value;
-      console.log(id)
-      let subject = get_all_subjects_by_assignee_id(id);
-      console.log(subject)
+      let subject = get_all_subjects_by_assignee_id(parseInt(id));
+      // console.log(subject)
       document.getElementById(
         select_target
       ).innerHTML = `subject : ${subject}`;
