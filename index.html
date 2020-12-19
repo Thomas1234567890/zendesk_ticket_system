@@ -1,38 +1,86 @@
-<div>
-	<h1>
-		Zendesk Ticket Viewer
-	</h1>
+<!-- Bootstrap CSS -->
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+  crossorigin="anonymous"
+/>
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+  crossorigin="anonymous"
+></script>
 
-	<ul>
-		<li>
-			Connect to the Zendesk API / load local ticket array instead
-		</li>
-		<li>
-			Request all the tickets for your account / let the user pick tickets tied
-			to a user acount
-		</li>
-		<li>
-			Display them in a list
-		</li>
-		<li>
-			Display individual ticket details
-		</li>
-		<li>
-			Page through tickets when more than 25 are returned / pagnation
-		</li>
-		<li>
-			<small>NOTE : the data.json is contained in a ticket property.</small>
-		</li>
-	</ul>
+<div class="container">
+  <h1>
+    Zendesk Ticket Viewer
+  </h1>
+
+  <ul>
+    <li>
+      Connect to the Zendesk API / load local ticket array instead
+    </li>
+    <li>
+      Request all the tickets for your account / let the user pick tickets tied
+      to a user acount
+    </li>
+    <li>
+      Display them in a list
+    </li>
+    <li>
+      Display individual ticket details
+    </li>
+    <li>
+      Page through tickets when more than 25 are returned / pagnation
+    </li>
+    <li>
+      <small>NOTE : the data.json is contained in a ticket property.</small>
+    </li>
+  </ul>
+
+  <div id="" class="form">
+    <div class="form-floating">
+      <select
+        class="form-select"
+        id="requester_id_dropdown"
+        aria-label="Floating label select example"
+      >
+        <option selected disabled></option>
+      </select>
+      <label for="floatingSelect">select ticket by requerster id</label>
+    </div>
+    <p id="requester_id_dropdown_value" class="text"></p>
+  </div>
+
+  <div id="" class="form">
+    <div class="form-floating">
+      <select
+        class="form-select"
+        id="assignee_id_dropdown"
+        aria-label="Floating label select example"
+      >
+        <option selected disabled></option>
+      </select>
+      <label for="floatingSelect">select tickets by assignee / group id</label>
+    </div>
+    <ul id="assignee_id_dropdown_value" class=''>
+
+    </ul>
+  </div>
+
+  <!-- <div class="form">
+<div class="input-group mb-3">
+  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="#">Separated link</a></li>
+  </ul>
+  <input type="text" class="form-control" aria-label="Text input with dropdown button">
 </div>
-
-<div id="app">
-
-	<select id='requester_id_dropdown' onchange="show_requester_ids_dropdown_subject()">
-  <option  selected disabled >select ticket by requester id </option>
-</select>
-
-	<p id='requester_id_dropdown_value'></p>
-
-
+</div> -->
 </div>
